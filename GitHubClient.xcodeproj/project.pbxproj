@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		31B22259E37E7822F99FB3EE /* Pods_GitHubClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5324FCC9FB9398E7F258D85C /* Pods_GitHubClient.framework */; };
 		40255ACD1CD5011400BC0F7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 40255ACC1CD5011400BC0F7C /* main.m */; };
-		40255AD01CD5011400BC0F7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40255ACF1CD5011400BC0F7C /* AppDelegate.m */; };
-		40255AD31CD5011400BC0F7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40255AD21CD5011400BC0F7C /* ViewController.m */; };
-		40255AD61CD5011400BC0F7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40255AD41CD5011400BC0F7C /* Main.storyboard */; };
 		40255AD81CD5011400BC0F7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40255AD71CD5011400BC0F7C /* Assets.xcassets */; };
-		40255ADB1CD5011400BC0F7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40255AD91CD5011400BC0F7C /* LaunchScreen.storyboard */; };
 		40255AE61CD5011400BC0F7C /* GitHubClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 40255AE51CD5011400BC0F7C /* GitHubClientTests.m */; };
 		40255AF11CD5011400BC0F7C /* GitHubClientUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 40255AF01CD5011400BC0F7C /* GitHubClientUITests.m */; };
+		81226F341CD8B15E00DCA018 /* ClientNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81226F331CD8B15E00DCA018 /* ClientNetWorkManager.m */; };
+		81226F3F1CD8B1F700DCA018 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81226F371CD8B1F700DCA018 /* AppDelegate.m */; };
+		81226F401CD8B1F700DCA018 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81226F3A1CD8B1F700DCA018 /* LaunchScreen.storyboard */; };
+		81226F411CD8B1F700DCA018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81226F3B1CD8B1F700DCA018 /* Main.storyboard */; };
+		81226F421CD8B1F700DCA018 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81226F3E1CD8B1F700DCA018 /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,13 +39,7 @@
 /* Begin PBXFileReference section */
 		40255AC81CD5011400BC0F7C /* GitHubClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40255ACC1CD5011400BC0F7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		40255ACE1CD5011400BC0F7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		40255ACF1CD5011400BC0F7C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		40255AD11CD5011400BC0F7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		40255AD21CD5011400BC0F7C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		40255AD51CD5011400BC0F7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		40255AD71CD5011400BC0F7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		40255ADA1CD5011400BC0F7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40255ADC1CD5011400BC0F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40255AE11CD5011400BC0F7C /* GitHubClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40255AE51CD5011400BC0F7C /* GitHubClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitHubClientTests.m; sourceTree = "<group>"; };
@@ -53,6 +48,14 @@
 		40255AF01CD5011400BC0F7C /* GitHubClientUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitHubClientUITests.m; sourceTree = "<group>"; };
 		40255AF21CD5011400BC0F7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5324FCC9FB9398E7F258D85C /* Pods_GitHubClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81226F321CD8B15E00DCA018 /* ClientNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientNetWorkManager.h; sourceTree = "<group>"; };
+		81226F331CD8B15E00DCA018 /* ClientNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientNetWorkManager.m; sourceTree = "<group>"; };
+		81226F361CD8B1F700DCA018 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		81226F371CD8B1F700DCA018 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		81226F3A1CD8B1F700DCA018 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81226F3B1CD8B1F700DCA018 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		81226F3D1CD8B1F700DCA018 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		81226F3E1CD8B1F700DCA018 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B3F90B7742DF2C2777E1377A /* Pods-GitHubClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubClient/Pods-GitHubClient.release.xcconfig"; sourceTree = "<group>"; };
 		BFFB14B87C452ECFBF7EC8E8 /* Pods-GitHubClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubClient/Pods-GitHubClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,14 +120,11 @@
 		40255ACA1CD5011400BC0F7C /* GitHubClient */ = {
 			isa = PBXGroup;
 			children = (
-				40255AFE1CD5045D00BC0F7C /* HttpClient */,
-				40255ACE1CD5011400BC0F7C /* AppDelegate.h */,
-				40255ACF1CD5011400BC0F7C /* AppDelegate.m */,
-				40255AD11CD5011400BC0F7C /* ViewController.h */,
-				40255AD21CD5011400BC0F7C /* ViewController.m */,
-				40255AD41CD5011400BC0F7C /* Main.storyboard */,
+				81226F351CD8B1F700DCA018 /* Application */,
+				81226F3C1CD8B1F700DCA018 /* ViewController */,
+				81226F391CD8B1F700DCA018 /* Resource */,
+				81226F311CD8B11E00DCA018 /* HttpClient */,
 				40255AD71CD5011400BC0F7C /* Assets.xcassets */,
-				40255AD91CD5011400BC0F7C /* LaunchScreen.storyboard */,
 				40255ADC1CD5011400BC0F7C /* Info.plist */,
 				40255ACB1CD5011400BC0F7C /* Supporting Files */,
 			);
@@ -157,19 +157,48 @@
 			path = GitHubClientUITests;
 			sourceTree = "<group>";
 		};
-		40255AFE1CD5045D00BC0F7C /* HttpClient */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = HttpClient;
-			sourceTree = "<group>";
-		};
 		56C9D0134DB0D88FF55EBEC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				5324FCC9FB9398E7F258D85C /* Pods_GitHubClient.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81226F311CD8B11E00DCA018 /* HttpClient */ = {
+			isa = PBXGroup;
+			children = (
+				81226F321CD8B15E00DCA018 /* ClientNetWorkManager.h */,
+				81226F331CD8B15E00DCA018 /* ClientNetWorkManager.m */,
+			);
+			path = HttpClient;
+			sourceTree = "<group>";
+		};
+		81226F351CD8B1F700DCA018 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				81226F361CD8B1F700DCA018 /* AppDelegate.h */,
+				81226F371CD8B1F700DCA018 /* AppDelegate.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		81226F391CD8B1F700DCA018 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				81226F3A1CD8B1F700DCA018 /* LaunchScreen.storyboard */,
+				81226F3B1CD8B1F700DCA018 /* Main.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		81226F3C1CD8B1F700DCA018 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				81226F3D1CD8B1F700DCA018 /* ViewController.h */,
+				81226F3E1CD8B1F700DCA018 /* ViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,9 +307,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40255ADB1CD5011400BC0F7C /* LaunchScreen.storyboard in Resources */,
+				81226F411CD8B1F700DCA018 /* Main.storyboard in Resources */,
 				40255AD81CD5011400BC0F7C /* Assets.xcassets in Resources */,
-				40255AD61CD5011400BC0F7C /* Main.storyboard in Resources */,
+				81226F401CD8B1F700DCA018 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,9 +382,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40255AD31CD5011400BC0F7C /* ViewController.m in Sources */,
-				40255AD01CD5011400BC0F7C /* AppDelegate.m in Sources */,
+				81226F341CD8B15E00DCA018 /* ClientNetWorkManager.m in Sources */,
 				40255ACD1CD5011400BC0F7C /* main.m in Sources */,
+				81226F421CD8B1F700DCA018 /* ViewController.m in Sources */,
+				81226F3F1CD8B1F700DCA018 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,25 +419,6 @@
 			targetProxy = 40255AED1CD5011400BC0F7C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		40255AD41CD5011400BC0F7C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				40255AD51CD5011400BC0F7C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		40255AD91CD5011400BC0F7C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				40255ADA1CD5011400BC0F7C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		40255AF31CD5011400BC0F7C /* Debug */ = {
@@ -503,6 +514,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zangqilong.GitHubClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
 		};
@@ -515,6 +527,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zangqilong.GitHubClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;
 		};
