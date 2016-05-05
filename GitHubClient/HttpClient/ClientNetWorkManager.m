@@ -46,25 +46,25 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
     if ([url.scheme isEqualToString:@"com.bear.githubclient"]) {
         
     
-    NSString * codeString = [url.resourceSpecifier substringFromIndex:[url.resourceSpecifier rangeOfString:@"="].location+1];
+        NSString * codeString = [url.resourceSpecifier substringFromIndex:[url.resourceSpecifier rangeOfString:@"="].location+1];
         
         __weak ClientNetWorkManager * weakself = self;
-    [self postNetWorkDataWithUrl:GitHubGetTokenUrlString AndParameter:@{@"client_id":GitHubClientID,@"client_secret":GitHubSecret,@"code":codeString} success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
-        NSDictionary * dic = (NSDictionary *)responseObject;
-        NSString * token = dic[@"access_token"];
-        [weakself getUserInfomationWith:GitHubUserInformationUrlString token:token success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
-            _successBlock(task,responseObject);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError *error) {
+        [self postNetWorkDataWithUrl:GitHubGetTokenUrlString AndParameter:@{@"client_id":GitHubClientID,@"client_secret":GitHubSecret,@"code":codeString} success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
+            NSDictionary * dic = (NSDictionary *)responseObject;
+            NSString * token = dic[@"access_token"];
+            [weakself getUserInfomationWith:GitHubUserInformationUrlString token:token success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
+                _successBlock(task,responseObject);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError *error) {
             _failBlock(task,error);
         }];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError *error) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError *error) {
         _failBlock(task,error);
-    }];
+        }];
         return YES;
-    }else{
-        return NO;
-    }
+        }else{
+            return NO;
+        }
 }
 
 
