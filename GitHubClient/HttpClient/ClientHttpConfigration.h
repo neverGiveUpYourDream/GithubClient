@@ -8,13 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const GitHubGetTokenUrlString;
+extern NSString * const GitHubGetTokenURLString;
 
-extern NSString * const GitHubUserInformationUrlString;
+extern NSString * const GitHubUserInformationURLString;
 
 extern NSString * const GitHubClientID;
 
 extern NSString * const GitHubSecret;
+
+extern NSString * const GitHubAuthorizeURLString;
+
+extern NSString * const GitHubAuthScope;
+
+extern NSString * const GitHubRedirect;
 
 
 @interface ClientHttpConfigration : NSObject

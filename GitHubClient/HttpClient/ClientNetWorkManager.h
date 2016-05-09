@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GitHubRequest.h"
 
 @interface ClientNetWorkManager : NSObject
 
@@ -15,6 +16,7 @@
 - (void)authorizationRequestSuccess:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                             failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
-- (BOOL)delaCallBackUrl:(NSURL *)url;
+- (void)addRequest:(GitHubRequest *)request;
+
 
 @end

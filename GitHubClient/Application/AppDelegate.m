@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ClientNetWorkManager.h"
+#import "OAuth2Manager.h"
 @interface AppDelegate ()
 
 @end
@@ -43,6 +43,6 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
-    return [[ClientNetWorkManager shareManager] delaCallBackUrl:url];
+    return [OAuth2Manager delaCallBackUrl:url];
 }
 @end

@@ -9,6 +9,7 @@
 #import "ClientNetWorkManager.h"
 #import "AFNetworking.h"
 #import "ClientHttpConfigration.h"
+#import "NSUserDefaults+TokenAccess.h"
 
 typedef void(^SuccessBlock)(NSURLSessionDataTask *task, id _Nullable responseObject);
 
@@ -17,6 +18,8 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
 @interface ClientNetWorkManager(){
     SuccessBlock _successBlock;
     FailBlock _failBlock;
+//    ClientHttpConfigration * _httpConfigration;
+    AFHTTPSessionManager * _manager;
 }
 
 @end
@@ -33,6 +36,16 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
 }
 
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return self;
+}
+
+
 - (void)authorizationRequestSuccess:(void (^)(NSURLSessionDataTask *, id _Nullable))success
                             failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError *))failure{
     _successBlock = success;
@@ -42,17 +55,17 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
 }
 
 
-- (BOOL)delaCallBackUrl:(NSURL *)url{
+- (BOOL)delaCallBackUrll:(NSURL *)url{
     if ([url.scheme isEqualToString:@"com.bear.githubclient"]) {
         
     
         NSString * codeString = [url.resourceSpecifier substringFromIndex:[url.resourceSpecifier rangeOfString:@"="].location+1];
         
         __weak ClientNetWorkManager * weakself = self;
-        [self postNetWorkDataWithUrl:GitHubGetTokenUrlString AndParameter:@{@"client_id":GitHubClientID,@"client_secret":GitHubSecret,@"code":codeString} success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
+        [self postNetWorkDataWithUrl:GitHubGetTokenURLString andParameter:@{@"client_id":GitHubClientID,@"client_secret":GitHubSecret,@"code":codeString} success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
             NSDictionary * dic = (NSDictionary *)responseObject;
             NSString * token = dic[@"access_token"];
-            [weakself getUserInfomationWith:GitHubUserInformationUrlString token:token success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
+            [weakself getUserInfomationWith:GitHubUserInformationURLString token:token success:^(NSURLSessionDataTask *task, id  _Nullable responseObject) {
                 _successBlock(task,responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError *error) {
             _failBlock(task,error);
@@ -86,7 +99,7 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
 
 
 - (void)postNetWorkDataWithUrl:(NSString *)urlString
-                   AndParameter:(NSDictionary *)parameter
+                   andParameter:(NSDictionary *)parameter
                         success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                         failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
@@ -99,6 +112,110 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
         failure(task,error);
     }];
     
+}
+
+
+- (void)addRequest:(GitHubRequest *)request{
+    [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [self addAuthorizationHeader];
+    [self netWorkManagerAddBlockWithRequest:request];
+    
+    
+}
+
+- (void)netWorkManagerAddBlockWithRequest:(GitHubRequest *)request{
+    switch (request.requestMethod) {
+        case GitHubRequestMethodGet:{
+            [self netManagerGetWithRequest:request];
+            break;
+        }
+        case GitHubRequestMethodPost:{
+            [self netManagerPostWithRequest:request];
+          
+            break;
+        }
+
+        case GitHubRequestMethodHead:{
+            
+            break;
+        }
+        case GitHubRequestMethodDelete:{
+            
+            break;
+        }
+        case GitHubRequestMethodPatch:{
+            
+            break;
+        }
+
+
+
+            
+        default:
+            break;
+    }
+}
+
+
+#pragma mark - RequestMethon
+
+- (void)netManagerGetWithRequest:(GitHubRequest *)request{
+    __weak ClientNetWorkManager * weakManager = self;
+    request.sessionDataTask = [_manager GET:[self buildRequest:request] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [weakManager addResponseBlock:request response:responseObject error:nil];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [weakManager addResponseBlock:request response:nil error:error];
+
+    }];
+}
+
+
+- (void)netManagerPostWithRequest:(GitHubRequest *)request{
+    __weak ClientNetWorkManager * weakManager = self;
+    request.sessionDataTask = [_manager POST:[self buildRequest:request] parameters:request.requestParamter progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [weakManager addResponseBlock:request response:responseObject error:nil];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [weakManager addResponseBlock:request response:nil error:error];
+
+    }];
+}
+
+
+
+
+#pragma mark - Private Method
+- (NSString *)buildRequest:(GitHubRequest *)request{
+    NSString * URLString = request.requestURL;
+    if ([URLString hasPrefix:@"http"]) {
+        return URLString;
+    }
+    NSString * baseURLString;
+    if (request.baseURL) {
+        baseURLString = request.baseURL;
+    }
+    return [NSString stringWithFormat:@"%@%@",baseURLString,URLString];
+    
+}
+
+
+- (void)addResponseBlock:(GitHubRequest *)request response:(id) response error:(NSError *)error{
+    if (request.requestFinishedCallback) {
+        request.requestFinishedCallback(response,error);
+    }
+}
+
+
+- (void)addAuthorizationHeader{
+    NSString * token = [[NSUserDefaults standardUserDefaults] getToken];
+    if (token) {
+        [_manager.requestSerializer setValue:[NSString stringWithFormat:@"token %@",token] forHTTPHeaderField:@"Authorization"];
+ 
+    }
 }
 
 
