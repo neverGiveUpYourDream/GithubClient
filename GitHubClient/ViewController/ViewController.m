@@ -33,11 +33,14 @@
 - (IBAction)getUserInformation:(id)sender{
     UserRequest * userRequest = [UserRequest new];
     [userRequest startRequestWithFinshBlock:^(id result, NSError *error) {
+        if (!error) {
+            
         NSDictionary * dic = (NSDictionary *)result;
         NSData * data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
         NSString * alertString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:alertString delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
+        }
 
     }];
 }

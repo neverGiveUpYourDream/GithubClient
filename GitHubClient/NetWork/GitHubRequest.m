@@ -9,6 +9,8 @@
 #import "GitHubRequest.h"
 #import "ClientNetWorkManager.h"
 #import "ClientHttpConfigration.h"
+
+static NSString * Etag = @"";
 @implementation GitHubRequest
 
 
@@ -51,6 +53,40 @@
 
 - (NSDictionary *)requestParamter{
     return nil;
+}
+
+
+- (void)setEtag:(NSString *)etag{
+    Etag = etag;
+}
+
+
+- (NSString *)getEtag{
+    return Etag;
+}
+
+
+- (void)setCache:(id)response{
+
+}
+
+
+- (id)getCache{
+    return nil;
+}
+
+
+- (BOOL)cached{
+    return NO;
+}
+
+
+- (NSString *)getHomePath{
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [docPath stringByAppendingPathComponent:@"response"];
+    
+    
+    return path;
 }
 
 @end

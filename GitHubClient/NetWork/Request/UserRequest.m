@@ -14,4 +14,15 @@
     return @"/user";
 }
 
+
+- (void)setCache:(id)response{
+    BOOL result = [NSKeyedArchiver archiveRootObject:response toFile:[self getHomePath]];
+    NSLog(@"%d,%@",result,[self getHomePath]);
+}
+
+
+- (id)getCache{
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self getHomePath]];
+}
+
 @end

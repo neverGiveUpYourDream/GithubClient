@@ -116,6 +116,16 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
 
 
 - (void)addRequest:(GitHubRequest *)request{
+    AFJSONResponseSerializer * responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString * etag = [request getEtag];
+    if (etag) {
+        [_manager.requestSerializer setValue:etag forHTTPHeaderField:@"If-None-Match"];
+        _manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    }
+    NSMutableIndexSet *set = [[responseSerializer acceptableStatusCodes] mutableCopy];
+    [set addIndex:304];
+    responseSerializer.acceptableStatusCodes = set;
+    _manager.responseSerializer = responseSerializer;
     [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [self addAuthorizationHeader];
     [self netWorkManagerAddBlockWithRequest:request];
@@ -164,7 +174,7 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
     request.sessionDataTask = [_manager GET:[self buildRequest:request] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [weakManager addResponseBlock:request response:responseObject error:nil];
+        [weakManager setHttpRequestSuccess:task forRequest:request andResponse:responseObject];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [weakManager addResponseBlock:request response:nil error:error];
@@ -178,12 +188,14 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
     request.sessionDataTask = [_manager POST:[self buildRequest:request] parameters:request.requestParamter progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [weakManager addResponseBlock:request response:responseObject error:nil];
+        [weakManager setHttpRequestSuccess:task forRequest:request andResponse:responseObject];
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [weakManager addResponseBlock:request response:nil error:error];
 
     }];
 }
+
 
 
 
@@ -217,6 +229,25 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
  
     }
 }
+
+
+- (void)setHttpRequestSuccess:(NSURLSessionTask *)task forRequest:(GitHubRequest *)request andResponse:(id)responseObject{
+    NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)task.response;
+    NSLog(@"%d",httpResponse.statusCode);
+    if (httpResponse.statusCode != 304) {
+        if ([httpResponse respondsToSelector:@selector(allHeaderFields)]) {
+            NSString * etag = httpResponse.allHeaderFields[@"Etag"];
+            [request setEtag:etag];
+            [request setCache:responseObject];
+        }
+        [self addResponseBlock:request response:responseObject error:nil];
+
+    }else{
+        [self addResponseBlock:request response:[request getCache] error:nil];
+    }
+
+}
+
 
 
 @end

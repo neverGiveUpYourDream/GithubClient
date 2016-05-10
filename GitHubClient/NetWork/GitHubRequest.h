@@ -41,7 +41,17 @@ typedef NS_ENUM(NSInteger , GitHubRequestMethod) {
 
 - (NSDictionary *)requestParamter;
 
+- (void)setEtag:(NSString *)etag;
 
+- (NSString *)getEtag;
+
+- (void)setCache:(id)response;
+
+- (id)getCache;
+
+- (BOOL)cached;
+
+- (NSString *)getHomePath;
 
 
 
