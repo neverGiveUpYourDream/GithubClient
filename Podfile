@@ -5,6 +5,8 @@ use_frameworks!
 
 target 'GitHubClient' do
 pod 'AFNetworking'
+pod 'FMDB'
+pod 'MJExtension'
 end
 
 target 'GitHubClientTests' do

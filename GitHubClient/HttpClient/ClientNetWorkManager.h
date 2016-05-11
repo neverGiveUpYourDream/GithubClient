@@ -13,8 +13,8 @@
 
 + (instancetype)shareManager;
 
-- (void)authorizationRequestSuccess:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-                            failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+//- (void)authorizationRequestSuccess:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+//                            failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
 - (void)addRequest:(GitHubRequest *)request;
 

@@ -9,7 +9,6 @@
 #import "GitHubRequest.h"
 #import "ClientNetWorkManager.h"
 #import "ClientHttpConfigration.h"
-
 static NSString * Etag = @"";
 @implementation GitHubRequest
 

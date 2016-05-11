@@ -7,7 +7,8 @@
 //
 
 #import "UserRequest.h"
-
+#import "UserModel.h"
+#import "NetWorkDataStorage.h"
 @implementation UserRequest
 
 - (NSString *)requestURL{
@@ -16,8 +17,15 @@
 
 
 - (void)setCache:(id)response{
-    BOOL result = [NSKeyedArchiver archiveRootObject:response toFile:[self getHomePath]];
-    NSLog(@"%d,%@",result,[self getHomePath]);
+//    BOOL result = [NSKeyedArchiver archiveRootObject:response toFile:[self getHomePath]];
+    [self storgeWithDataBase:response];
+}
+
+
+- (void)storgeWithDataBase:(id)response{
+    UserModel * userModel = [UserModel mj_objectWithKeyValues:(NSDictionary *)response];
+    [NetWorkDataStorage storeUserNetWorkData:userModel];
+
 }
 
 
