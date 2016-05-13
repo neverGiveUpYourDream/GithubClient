@@ -385,6 +385,7 @@
 				TargetAttributes = {
 					40255AC71CD5011400BC0F7C = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 6W7GW4H935;
 					};
 					40255AE01CD5011400BC0F7C = {
 						CreatedOnToolsVersion = 7.3;
@@ -708,6 +709,8 @@
 			baseConfigurationReference = 1382ADF274F302749D740453 /* Pods-GitHubClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = GitHubClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -719,6 +722,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zangqilong.GitHubClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b443c918-c032-4d05-8623-b17d9a33df2f";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
@@ -728,6 +732,8 @@
 			baseConfigurationReference = F6E298DDE525CB5C37B420A6 /* Pods-GitHubClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = GitHubClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -739,6 +745,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zangqilong.GitHubClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b443c918-c032-4d05-8623-b17d9a33df2f";
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;

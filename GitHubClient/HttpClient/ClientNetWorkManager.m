@@ -18,7 +18,6 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
 @interface ClientNetWorkManager(){
     SuccessBlock _successBlock;
     FailBlock _failBlock;
-//    ClientHttpConfigration * _httpConfigration;
     AFHTTPSessionManager * _manager;
 }
 
@@ -233,7 +232,6 @@ typedef void(^FailBlock)(NSURLSessionDataTask * _Nullable task, NSError *error);
 
 - (void)setHttpRequestSuccess:(NSURLSessionTask *)task forRequest:(GitHubRequest *)request andResponse:(id)responseObject{
     NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)task.response;
-    NSLog(@"%@",responseObject);
     if (httpResponse.statusCode != 304) {
         if ([httpResponse respondsToSelector:@selector(allHeaderFields)]) {
             NSString * etag = httpResponse.allHeaderFields[@"Etag"];

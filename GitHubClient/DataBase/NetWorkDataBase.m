@@ -12,8 +12,9 @@ static FMDatabase * dbPointer;
 @implementation NetWorkDataBase
 
 + (FMDatabase *)setUp{
-    NSString * path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString * dbPath = [path stringByAppendingString:@"NetWorkHistory.db"];
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * path = paths[0];
+    NSString * dbPath = [path stringByAppendingPathComponent:@"NetWorkHistory.db"];
     dbPointer = [FMDatabase databaseWithPath:dbPath];
     if (![dbPointer open]) {
         return 0;

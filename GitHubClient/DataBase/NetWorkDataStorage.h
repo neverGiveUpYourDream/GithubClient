@@ -7,9 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class UserModel;
+
 @interface NetWorkDataStorage : NSObject
 
 + (BOOL)storeUserNetWorkData:(UserModel *)userModel;
+
++ (UserModel *)getUserStorage;
+
++ (BOOL)deleteAllUser;
 
 @end

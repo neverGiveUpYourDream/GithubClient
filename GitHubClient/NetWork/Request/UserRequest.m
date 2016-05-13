@@ -9,6 +9,7 @@
 #import "UserRequest.h"
 #import "UserModel.h"
 #import "NetWorkDataStorage.h"
+#import "MJExtension.h"
 @implementation UserRequest
 
 - (NSString *)requestURL{
@@ -24,13 +25,17 @@
 
 - (void)storgeWithDataBase:(id)response{
     UserModel * userModel = [UserModel mj_objectWithKeyValues:(NSDictionary *)response];
+    [NetWorkDataStorage deleteAllUser];
     [NetWorkDataStorage storeUserNetWorkData:userModel];
 
 }
 
 
 - (id)getCache{
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self getHomePath]];
+    UserModel * model = [NetWorkDataStorage getUserStorage];
+    
+    return model.mj_keyValues;
+//    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self getHomePath]];
 }
 
 @end
